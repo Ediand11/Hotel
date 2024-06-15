@@ -4,15 +4,12 @@ import { createTheme, ThemeProvider } from "@mui/material";
 
 export const theme = createTheme({
   palette: {
+    mode: "light",
     primary: {
-      main: "#ffd4d4",
-      dark: "#f1a69d",
-      light: "#ffeeef",
+      main: "#5035a0",
     },
     secondary: {
-      main: "#ff9292",
-      dark: "#f66768",
-      light: "#ffc9cf",
+      main: "#9c27b0",
     },
   },
 });
