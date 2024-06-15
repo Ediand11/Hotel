@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export const api = axios.create({
-  baseURL: "http://localhost:3010" || process.env.BACK,
+  baseURL: process.env.BACKEND_URL || "http://localhost:3010",
 });
