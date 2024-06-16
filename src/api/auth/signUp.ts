@@ -3,8 +3,11 @@ import { api } from "..";
 
 interface ISignUp {
   username: string;
-  emailUser: string;
-  passwordUser: string;
+  email: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+  phoneNumber: string;
 }
 
 export interface RespLoginSuccess {
@@ -21,14 +24,24 @@ export interface RespLoginError {
 
 export type RespSign = RespLoginSuccess | RespLoginError;
 
-export const signUpUser = async ({ username, emailUser, passwordUser }: ISignUp): Promise<RespSign> => {
+export const signUpGuestUser = async ({
+  username,
+  email,
+  password,
+  firstName,
+  lastName,
+  phoneNumber,
+}: ISignUp): Promise<RespSign> => {
   try {
     const response: AxiosResponse = await api.post(
-      "/users",
+      "/users/guest",
       {
         username: username,
-        email: emailUser,
-        password: passwordUser,
+        email: email,
+        password: password,
+        firstName: firstName,
+        lastName: lastName,
+        phoneNumber: phoneNumber,
       },
       { withCredentials: true }
     );

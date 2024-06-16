@@ -1,6 +1,6 @@
 "use client";
 
-import { signUpUser } from "@/src/api/auth/signUp";
+import { signUpGuestUser } from "@/src/api/auth/signUp";
 import {
   validatorEmail,
   validatorPassword,
@@ -30,6 +30,9 @@ const SignUp = () => {
       email: formData.get("email") as string,
       username: formData.get("username") as string,
       password: formData.get("password") as string,
+      firstName: formData.get("firstName") as string,
+      lastName: formData.get("lastName") as string,
+      phoneNumber: formData.get("phoneNumber") as string,
     };
     const repeatPassword = formData.get("rep_password") as string;
 
@@ -75,11 +78,7 @@ const SignUp = () => {
       response: "",
     });
 
-    const response = await signUpUser({
-      emailUser: userData.email,
-      username: userData.username,
-      passwordUser: userData.password,
-    });
+    const response = await signUpGuestUser(userData);
 
     if (!response.error && response.username && response.email) {
       router.replace("/");
@@ -155,6 +154,39 @@ const SignUp = () => {
               autoComplete="current-password"
               error={!!errors.repeatPass}
               helperText={errors.repeatPass}
+            />
+            <TextField
+              color={"secondary"}
+              margin="normal"
+              required
+              fullWidth
+              name="firstName"
+              label="First Name"
+              type="text"
+              id="firstName"
+              autoComplete="given-name"
+            />
+            <TextField
+              color={"secondary"}
+              margin="normal"
+              required
+              fullWidth
+              name="lastName"
+              label="Last Name"
+              type="text"
+              id="lastName"
+              autoComplete="family-name"
+            />
+            <TextField
+              color={"secondary"}
+              margin="normal"
+              required
+              fullWidth
+              name="phoneNumber"
+              label="Phone Number"
+              type="tel"
+              id="phoneNumber"
+              autoComplete="tel"
             />
 
             <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>

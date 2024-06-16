@@ -2,7 +2,7 @@ import { AxiosResponse } from "axios";
 import { api } from "..";
 
 interface ILogin {
-  emailUser: string;
+  username: string;
   passwordUser: string;
 }
 
@@ -20,12 +20,12 @@ export interface RespLoginError {
 
 export type RespLogin = RespLoginSuccess | RespLoginError;
 
-export const loginUser = async ({ emailUser, passwordUser }: ILogin): Promise<RespLogin> => {
+export const loginUser = async ({ username, passwordUser }: ILogin): Promise<RespLogin> => {
   try {
     const response: AxiosResponse = await api.post(
-      `/users/login`,
+      `/users/guest/login`,
       {
-        email: emailUser,
+        username: username,
         password: passwordUser,
       },
       { withCredentials: true }
